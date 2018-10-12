@@ -16,7 +16,15 @@ app.listen(4200, function() {
 });
 
 app.get(`/`, (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/app/index.html'));
+});
+
+app.get(`/app.js`, (req, res) => {
+  res.sendFile(path.join(__dirname + '/app/app.js'));
+});
+
+app.get(`/styles.css`, (req, res) => {
+  res.sendFile(path.join(__dirname + '/app/styles.css'));
 });
 
 server.on('listening', function () {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <h1>{{ title }}</h1>
+    <button v-on:click="add()">add</button>
+    <button v-on:click="subtract()">subtract</button>
+    <div>counter is {{ counter }}</div>
+    <div v-on:mousemove="updateXY" id="canvas">{{x}}, {{y}}</div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
