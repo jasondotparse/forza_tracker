@@ -3,9 +3,21 @@ const HOST = '10.0.0.118';
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
+const express = require('express');
+const request = require('request');
+const path = require('path');
 
+const app = express();
 let udp = require('udp-packet')
 let StringDecoder = require('string_decoder').StringDecoder;
+
+app.listen(4200, function() {
+  console.log(`listening on port ${PORT}`)
+});
+
+app.get(`/`, (req, res) => {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 server.on('listening', function () {
   let address = server.address();
