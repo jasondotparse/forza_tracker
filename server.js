@@ -1,30 +1,27 @@
 const PORT = 4200;
 const HOST = '10.0.0.118';
-
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
 const request = require('request');
 const path = require('path');
-
 const app = express();
-let udp = require('udp-packet')
-let StringDecoder = require('string_decoder').StringDecoder;
 
-app.listen(4200, function() {
+app.use(express.static(path.join(__dirname, "js")));
+
+let udp = require('udp-packet')
+// let StringDecoder = require('string_decoder').StringDecoder;
+
+app.listen(4200, () => {
   console.log(`listening on port ${PORT}`)
 });
 
 app.get(`/`, (req, res) => {
-  res.sendFile(path.join(__dirname + '/app/index.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.get(`/app.js`, (req, res) => {
-  res.sendFile(path.join(__dirname + '/app/app.js'));
-});
-
-app.get(`/styles.css`, (req, res) => {
-  res.sendFile(path.join(__dirname + '/app/styles.css'));
+app.get(`/dist/build.js`, (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/build.js'));
 });
 
 server.on('listening', function () {
