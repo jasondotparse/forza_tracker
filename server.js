@@ -9,9 +9,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "js")));
 
 const data = {
-  rpmCurrent,
-  rpmIdle,
-  rpmMax
+
 }
 
 app.listen(3000, () => {
@@ -39,14 +37,16 @@ server.on("listening", function() {
 });
 
 server.on("message", function(message, remote) {
-  const raceIsOn = message.slice(0, 4).readInt8(0);
+  const raceIsOn = message.slice(0, 4).readUInt16BE(0);
   if (raceIsOn) {
 
+    data.timeStamp = message.slice(4, 8).readInt8(0); // troubleshoot this
     data.rpmMax = message.slice(8, 12).readFloatLE(0);
     data.rpmIdle = message.slice(12, 16).readFloatLE(0);
     data.rpmCurrent = message.slice(16, 20).readFloatLE(0);
 
-    // console.log(rpmCurrent, rpmIdle, rpmMax);
+    console.log(data.timeStamp);
+
   }
 });
 
