@@ -3,17 +3,16 @@ const HOST = "10.0.0.118";
 const dgram = require("dgram");
 const server = dgram.createSocket("udp4");
 const express = require("express");
-const request = require("request");
 const path = require("path");
 const app = express();
-const udp = require("udp-packet");
 
 app.use(express.static(path.join(__dirname, "js")));
 
-// data
-let rpmCurrent;
-let rpmIdle;
-let rpmMax;
+const data = {
+  rpmCurrent,
+  rpmIdle,
+  rpmMax
+}
 
 app.listen(3000, () => {
   console.log(`listening on port 3000`);
@@ -29,7 +28,7 @@ app.get(`/dist/build.js`, (req, res) => {
 
 app.get(`/data`, (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.send(JSON.stringify({ rpmCurrent }));
+  res.send(JSON.stringify(data));
 });
 
 server.on("listening", function() {
@@ -42,9 +41,10 @@ server.on("listening", function() {
 server.on("message", function(message, remote) {
   const raceIsOn = message.slice(0, 4).readInt8(0);
   if (raceIsOn) {
-    rpmMax = message.slice(8, 12).readFloatLE(0);
-    rpmIdle = message.slice(12, 16).readFloatLE(0);
-    rpmCurrent = message.slice(16, 20).readFloatLE(0);
+
+    data.rpmMax = message.slice(8, 12).readFloatLE(0);
+    data.rpmIdle = message.slice(12, 16).readFloatLE(0);
+    data.rpmCurrent = message.slice(16, 20).readFloatLE(0);
 
     // console.log(rpmCurrent, rpmIdle, rpmMax);
   }

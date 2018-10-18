@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <h1>{{ title }}</h1>
-    <tachometer></tachometer>
-    <div style="font-size: 100px;">RPM: {{ rpm }}</div>
+    <tachometer v-bind:rpmCurrent="forzaData.rpmCurrent" v-bind:rpmMax="forzaData.rpmMax" v-bind:rpmIdle="forzaData.rpmIdle"></tachometer>
   </div>
 </template>
 
@@ -12,21 +11,22 @@ export default {
   data() {
     return {
       title: "Dashboard",
-      rpm: 0
+      forzaData: {}
     };
   },
   methods: {
 
   },
   created: function() {
-    let that = this;
     setInterval(function() {
 
-      that.$http.get("http://localhost:3000/data").then(res => {
-        that.rpm = Math.round(res.body.rpmCurrent);
+      this.$http.get("http://localhost:3000/data").then(res => {
+        this.forzaData = res.body;
       });
 
-    }, 20);
+      console.log(this.forzaData)
+
+    }.bind(this), 20);
   }
 };
 </script>

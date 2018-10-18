@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -8,6 +9,10 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  plugins: [
+
+  ],
+  watch: true,
   module: {
     rules: [
       {
