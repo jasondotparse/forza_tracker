@@ -52,9 +52,11 @@ server.on("message", function(message, remote) {
     data.numCylinders = message.slice(228, 232).readUInt16LE(0); // s32
 
     data.speedMPH = message.slice(244, 248).readFloatLE(0) * 2.23; // f32
+
+    data.raceBestLap = message.slice(284, 288).readFloatLE(0); // f32
     data.raceCurrentLap = message.slice(292, 296).readFloatLE(0); // f32
 
-    console.log(data.drivetrainType, data.numCylinders);
+    console.log('packet received');
   }
 });
 

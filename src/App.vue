@@ -2,6 +2,13 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <tachometer v-bind:rpmCurrent="forzaData.rpmCurrent" v-bind:rpmMax="forzaData.rpmMax" v-bind:rpmIdle="forzaData.rpmIdle"></tachometer>
+    <telemetry v-bind:speedMPH="forzaData.speedMPH"></telemetry>
+    <racestats 
+      v-bind:carOrdinal="forzaData.carOrdinal"
+      v-bind:carClass="forzaData.carClass"
+      v-bind:carPerformanceIndex="forzaData.carPerformanceIndex"
+      v-bind:drivetrainType="forzaData.drivetrainType"
+      v-bind:numCylinders="forzaData.numCylinders"></racestats>
   </div>
 </template>
 
@@ -26,7 +33,7 @@ export default {
 
       console.log(this.forzaData)
 
-    }.bind(this), 20);
+    }.bind(this), 33);
   }
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>rpm: {{ rpmCurrent }}</div>
-    <div>rpmMax: {{ rpmMax }}</div>
-    <div>rpmIdle: {{ rpmIdle }}</div>
+    <div>rpm: {{ displayedRPM }}</div>
+    <div>rpmMax: {{ displayedMaxRPM }}</div>
+    <div>rpmIdle: {{ displayedMinRPM }}</div>
   </div>
 </template>
 
@@ -12,7 +12,18 @@ export default {
   data() {
     return {
       
-    };
+    }
+  },
+  computed: {
+    displayedRPM: function() {
+      return Math.round(Number(this.rpmCurrent));
+    },
+    displayedMaxRPM: function() {
+      return Math.round(Number(this.rpmMax));
+    },
+    displayedMinRPM: function() {
+      return Math.round(Number(this.rpmIdle));
+    }
   }
 };
 </script>
