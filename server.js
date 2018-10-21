@@ -1,5 +1,5 @@
 const PORT = 4200;
-const HOST = "10.0.0.118";
+const HOST = "10.0.1.57";
 const dgram = require("dgram");
 const server = dgram.createSocket("udp4");
 const express = require("express");
@@ -36,17 +36,25 @@ server.on("listening", function() {
   );
 });
 
+// make sure data out is on, IP address matches that above, and data output type is 'dash'.
 server.on("message", function(message, remote) {
-  const raceIsOn = message.slice(0, 4).readUInt16BE(0);
+  const raceIsOn = message.slice(0, 4).readUInt16LE(0); // s32
   if (raceIsOn) {
 
-    data.timeStamp = message.slice(4, 8).readInt8(0); // troubleshoot this
-    data.rpmMax = message.slice(8, 12).readFloatLE(0);
-    data.rpmIdle = message.slice(12, 16).readFloatLE(0);
-    data.rpmCurrent = message.slice(16, 20).readFloatLE(0);
+    data.rpmMax = message.slice(8, 12).readFloatLE(0); // f32
+    data.rpmIdle = message.slice(12, 16).readFloatLE(0); // f32
+    data.rpmCurrent = message.slice(16, 20).readFloatLE(0); // f32
 
-    console.log(data.timeStamp);
+    data.carOrdinal = message.slice(212, 216).readUInt16LE(0); // s32
+    data.carClass = message.slice(216, 220).readUInt16LE(0); // s32
+    data.carPerformanceIndex = message.slice(220, 224).readUInt16LE(0); // s32
+    data.drivetrainType = message.slice(224, 228).readUInt16LE(0); // s32
+    data.numCylinders = message.slice(228, 232).readUInt16LE(0); // s32
 
+    data.speedMPH = message.slice(244, 248).readFloatLE(0) * 2.23; // f32
+    data.raceCurrentLap = message.slice(292, 296).readFloatLE(0); // f32
+
+    console.log(data.drivetrainType, data.numCylinders);
   }
 });
 
