@@ -8,7 +8,10 @@
       v-bind:carClass="forzaData.carClass"
       v-bind:carPerformanceIndex="forzaData.carPerformanceIndex"
       v-bind:drivetrainType="forzaData.drivetrainType"
-      v-bind:numCylinders="forzaData.numCylinders"></racestats>
+      v-bind:numCylinders="forzaData.numCylinders"
+      v-bind:bestLap="forzaData.raceBestLap"
+      v-bind:currentLap="forzaData.raceCurrentLap"
+      v-bind:lastLap="forzaData.lastLap"></racestats>
   </div>
 </template>
 
@@ -30,8 +33,6 @@ export default {
       this.$http.get("http://localhost:3000/data").then(res => {
         this.forzaData = res.body;
       });
-
-      console.log(this.forzaData)
 
     }.bind(this), 33);
   }

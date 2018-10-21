@@ -1,8 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Tachometer from "./tachometer.vue";
-import Telemetry from "./telemetry.vue";
-import RaceStats from "./racestats.vue";
+import Tachometer from "./components/tachometer.vue";
+import Telemetry from "./components/telemetry.vue";
+import RaceStats from "./components/racestats.vue";
 import VueResource from "vue-resource";
 
 Vue.component("tachometer", Tachometer);

@@ -2,15 +2,15 @@
   <div>
     <div>{{carName}} {{displayedCarClass}}/{{carPerformanceIndex}}</div>
     <div>{{numCylinders}} cylinder {{displayedDrivetrain}}</div>
-    <div>lap: </div>
-    <div>best lap: </div>
-    <div>last lap: </div>
+    <div>lap: {{ currentLap }}</div>
+    <div>best lap: {{ bestLap }}</div>
+    <div>last lap: {{lastLap}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['carOrdinal', 'carClass', 'carPerformanceIndex', 'drivetrainType', 'numCylinders'],
+  props: ['carOrdinal', 'carClass', 'carPerformanceIndex', 'drivetrainType', 'numCylinders', 'currentLap', 'bestLap', 'lastLap'],
   data() {
     return {
       
@@ -19,7 +19,8 @@ export default {
   computed: {
     carName: function() {
       const carMap = {
-        '2164': 'Lamborghini Hurican'
+        '2164': ' 2015 Lamborghini Hurican', 
+        '3072': '2018 Porsche 911 GT3 RS'
       };
 
       return carMap[this.carOrdinal];
