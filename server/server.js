@@ -25,7 +25,11 @@ app.get(`/dist/build.js`, (req, res) => {
 
 app.get(`/data`, (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(data));
+  if (data) {
+    res.send(JSON.stringify(data));
+  } else {
+    res.send('no data');
+  }
 });
 
 server.on('listening', function() {
