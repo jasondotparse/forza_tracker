@@ -2,6 +2,7 @@
   <div>
     <div>{{carName}} {{displayedCarClass}}/{{carPerformanceIndex}}</div>
     <div>{{numCylinders}} cylinder {{displayedDrivetrain}}</div>
+    <div>lap number: {{displayedLap}}</div>
     <div>lap: {{ currentLap }}</div>
     <div>best lap: {{ bestLap }}</div>
     <div>last lap: {{lastLap}}</div>
@@ -10,13 +11,16 @@
 
 <script>
 export default {
-  props: ['carOrdinal', 'carClass', 'carPerformanceIndex', 'drivetrainType', 'numCylinders', 'currentLap', 'bestLap', 'lastLap'],
+  props: ['carOrdinal', 'carClass', 'carPerformanceIndex', 'drivetrainType', 'numCylinders', 'currentLap', 'bestLap', 'lastLap', 'lapNumber'],
   data() {
     return {
       
     }
   },
   computed: {
+    displayedLap: function() {
+      return this.currentLap + 1;
+    }, 
     carName: function() {
       const carMap = {
         '2164': ' 2015 Lamborghini Hurican', 

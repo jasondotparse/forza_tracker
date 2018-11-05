@@ -42,7 +42,7 @@ server.on('message', (message, remote) => {
   const raceIsOn = message.slice(0, 4).readUInt16LE(0); // s32
   if (raceIsOn) {
     data = buildDataObj(message);
-    console.log(data.tireFrictionFL);
+    console.log('packet recieved');
   }
 });
 

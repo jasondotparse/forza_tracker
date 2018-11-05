@@ -2,7 +2,13 @@
   <div id="app">
     <div v-if="forzaData">
       <h1>{{ title }}</h1>
-      <tachometer v-bind:rpmCurrent="forzaData.rpmCurrent" v-bind:rpmMax="forzaData.rpmMax" v-bind:rpmIdle="forzaData.rpmIdle"></tachometer>
+      <tachometer 
+        v-bind:rpmCurrent="forzaData.rpmCurrent" 
+        v-bind:rpmMax="forzaData.rpmMax" 
+        v-bind:rpmIdle="forzaData.rpmIdle"
+        v-bind:power="forzaData.power"
+        v-bind:torque="forzaData.torque"
+        v-bind:gear="forzaData.gear"></tachometer>
       <telemetry v-bind:speedMPH="forzaData.speedMPH"></telemetry>
       <racestats 
         v-bind:carOrdinal="forzaData.carOrdinal"
@@ -12,7 +18,8 @@
         v-bind:numCylinders="forzaData.numCylinders"
         v-bind:bestLap="forzaData.raceBestLap"
         v-bind:currentLap="forzaData.raceCurrentLap"
-        v-bind:lastLap="forzaData.lastLap"></racestats>
+        v-bind:lastLap="forzaData.lastLap"
+        v-bind:lapNumber="forzaData.lapNumber"></racestats>
       <tiresDisplay
         v-bind:tireFrictionFL="forzaData.tireFrictionFL"
         v-bind:tireFrictionFR="forzaData.tireFrictionFR"
