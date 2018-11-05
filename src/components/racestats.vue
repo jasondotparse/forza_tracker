@@ -11,15 +11,23 @@
 
 <script>
 export default {
-  props: ['carOrdinal', 'carClass', 'carPerformanceIndex', 'drivetrainType', 'numCylinders', 'currentLap', 'bestLap', 'lastLap', 'lapNumber'],
+  props: [
+    'carOrdinal', 
+    'carClass', 
+    'carPerformanceIndex', 
+    'drivetrainType', 
+    'numCylinders', 
+    'currentLap', 
+    'bestLap', 
+    'lastLap', 
+    'lapNumber'
+  ],
   data() {
-    return {
-      
-    }
+    return { }
   },
   computed: {
     displayedLap: function() {
-      return this.currentLap + 1;
+      return this.lapNumber + 1;
     }, 
     carName: function() {
       const carMap = {
