@@ -13,6 +13,11 @@
         v-bind:bestLap="forzaData.raceBestLap"
         v-bind:currentLap="forzaData.raceCurrentLap"
         v-bind:lastLap="forzaData.lastLap"></racestats>
+      <tiresDisplay
+        v-bind:tireFrictionFL="forzaData.tireFrictionFL"
+        v-bind:tireFrictionFR="forzaData.tireFrictionFR"
+        v-bind:tireFrictionBL="forzaData.tireFrictionBL"
+        v-bind:tireFrictionBR="forzaData.tireFrictionBR"></tiresDisplay>
     </div>
     <div v-if="!forzaData">
       <h1>no data</h1>

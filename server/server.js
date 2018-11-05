@@ -1,5 +1,5 @@
 const PORT = 4200;
-const HOST = '10.0.0.118';
+const HOST = '10.0.1.120';
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
@@ -42,7 +42,7 @@ server.on('message', (message, remote) => {
   const raceIsOn = message.slice(0, 4).readUInt16LE(0); // s32
   if (raceIsOn) {
     data = buildDataObj(message);
-    console.log('packet recieved');
+    console.log(data.tireFrictionFL);
   }
 });
 

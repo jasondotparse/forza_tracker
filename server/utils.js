@@ -6,6 +6,12 @@ const buildDataObj = packet => {
     rpmCurrent: packet.slice(16, 20).readFloatLE(0), // f32
     speedMPH: packet.slice(244, 248).readFloatLE(0) * 2.23, // f32
 
+    // tire friction
+    tireFrictionFL: packet.slice(180,184).readFloatLE(0), // f32
+    tireFrictionFR: packet.slice(184,188).readFloatLE(0), // f32
+    tireFrictionBL: packet.slice(188,192).readFloatLE(0), // f32
+    tireFrictionBR: packet.slice(192,196).readFloatLE(0), // f32
+
     // car stats
     carOrdinal: packet.slice(212, 216).readUInt16LE(0), // s32
     carClass: packet.slice(216, 220).readUInt16LE(0),// s32
