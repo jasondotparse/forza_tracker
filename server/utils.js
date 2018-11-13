@@ -32,6 +32,32 @@ const buildDataObj = packet => {
   };
 }
 
+const generateDummyData = () => {
+  return {
+    rpmMax: Math.random(0, 1),
+    rpmIdle: Math.random(0, 1),
+    rpmCurrent: Math.random(0, 1),
+    speedMPH: Math.random(0, 1),
+    power: Math.random(0, 1),
+    torque: Math.random(0, 1),
+    gear: Math.random(0, 1),
+    tireFrictionFL: Math.random(0, 1),
+    tireFrictionFR: Math.random(0, 1),
+    tireFrictionBL: Math.random(0, 1),
+    tireFrictionBR: Math.random(0, 1),
+    carOrdinal: Math.random(0, 1),
+    carClass: Math.random(0, 1),
+    carPerformanceIndex: Math.random(0, 1),
+    drivetrainType: Math.random(0, 1),
+    numCylinders: Math.random(0, 1),
+    raceBestLap: Math.random(0, 1),
+    lastLap: Math.random(0, 1),
+    raceCurrentLap: Math.random(0, 1),
+    lapNumber: Math.random(0, 1),
+  }
+}
+
 module.exports = {
-  buildDataObj
+  buildDataObj, 
+  generateDummyData
 }

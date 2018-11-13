@@ -1,14 +1,16 @@
 const PORT = 4200;
-const HOST = '10.0.1.120';
+const HOST = '10.0.0.118';
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
 const path = require('path');
 const app = express();
-const { buildDataObj } = require('./utils');
+const { buildDataObj, generateDummyData } = require('./utils');
+const timer = require('timers');
 
 app.use(express.static(path.join(__dirname, 'js')));
 
+const devMode = true;
 let data;
 
 app.listen(3000, () => {
@@ -45,5 +47,11 @@ server.on('message', (message, remote) => {
     console.log('packet recieved');
   }
 });
+
+if (devMode) {
+  timer.setInterval(() => {
+    data = generateDummyData();
+  }, 50)
+}
 
 server.bind(PORT, HOST);
