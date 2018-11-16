@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <div v-if="forzaData">
       <h1>{{ title }}</h1>
       <tachometer 
