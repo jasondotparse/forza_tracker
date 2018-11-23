@@ -31,12 +31,12 @@ export default {
   watch: {
     rpmCurrent: function(newVal, oldVal) {
       const percentageOfMax = Number(newVal) / this.rpmMax;
-      const height = percentageOfMax * 400;
+      const height = percentageOfMax * 500;
       const Y = 500 - height;
 
       this.currRPMsGuage.attr("y", Y).attr("height", height);
 
-      if (percentageOfMax > 1) {
+      if (percentageOfMax > .75) {
         this.currRPMsGuage.style("fill", function(d) { return 'red' });
       } else {
         this.currRPMsGuage.style("fill", function(d) { return 'green' });
@@ -46,8 +46,7 @@ export default {
   mounted: function() {
     this.svgContainer = d3.select("#tachometerGuage").append("svg").attr("width", 200).attr("height", 600);
     
-    this.tachometerGuage = this.svgContainer.append("rect").attr("x", 10).attr("y", 0).attr("z", 10).attr("width", 70).attr("height", 500).style("fill", function(d) { return 'black' });
-    this.maxRPMsGuage = this.svgContainer.append("rect").attr("x", 10).attr("y", 100).attr("z", 20).attr("width", 70).attr("height", 400).style("fill", function(d) { return 'orange' });
+    this.maxRPMsGuage = this.svgContainer.append("rect").attr("x", 10).attr("y", 0).attr("z", 20).attr("width", 70).attr("height", 500).style("fill", function(d) { return 'black' });
     this.currRPMsGuage = this.svgContainer.append("rect").attr("x", 10).attr("y", 0).attr("z", 30).attr("width", 70);
   }
 };
