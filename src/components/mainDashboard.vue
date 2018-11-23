@@ -14,7 +14,7 @@
           </tachometer>
         </div>
         <div class="col-sm" id="col2">
-          <telemetry v-bind:speedMPH="forzaData.speedMPH">
+          <telemetry v-bind:speedMPH="forzaData.speedMPH"></telemetry>
           <tiresDisplay
             v-bind:tireFrictionFL="forzaData.tireFrictionFL"
             v-bind:tireFrictionFR="forzaData.tireFrictionFR"
@@ -35,7 +35,6 @@
             v-bind:lapNumber="forzaData.lapNumber">
           </racestats>
         </div>
-        </telemetry>
       </div>
     </div>
     <div v-if="!forzaData">
