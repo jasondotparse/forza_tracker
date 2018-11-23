@@ -34,9 +34,9 @@ const buildDataObj = packet => {
 
 const generateDummyData = () => {
   return {
-    rpmMax: Math.random(0, 1),
-    rpmIdle: Math.random(0, 1),
-    rpmCurrent: Math.random(0, 1),
+    rpmMax: 7500,
+    rpmIdle: 800,
+    rpmCurrent: Math.random(0, 1) * 7500,
     speedMPH: Math.random(0, 1),
     power: Math.random(0, 1),
     torque: Math.random(0, 1),

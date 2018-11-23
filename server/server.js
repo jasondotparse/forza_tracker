@@ -10,7 +10,7 @@ const timer = require('timers');
 
 app.use(express.static(path.join(__dirname, 'js')));
 
-const devMode = true;
+const devMode = false;
 let data;
 
 app.listen(3000, () => {
