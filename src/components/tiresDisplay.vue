@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>tire friction goes here:</div>
     <div>front left friction: {{frictionFL}}</div>
     <div>front right friction: {{tireFrictionFR}}</div>
     <div>back left friction: {{tireFrictionBL}}</div>

@@ -8,13 +8,15 @@
             v-bind:rpmCurrent="forzaData.rpmCurrent" 
             v-bind:rpmMax="forzaData.rpmMax" 
             v-bind:rpmIdle="forzaData.rpmIdle"
-            v-bind:power="forzaData.power"
-            v-bind:torque="forzaData.torque"
             v-bind:gear="forzaData.gear">
           </tachometer>
         </div>
         <div class="col-sm" id="col2">
-          <telemetry v-bind:speedMPH="forzaData.speedMPH"></telemetry>
+          <telemetry 
+            v-bind:speedMPH="forzaData.speedMPH"
+            v-bind:power="forzaData.power"
+            v-bind:torque="forzaData.torque">
+          </telemetry>
           <tiresDisplay
             v-bind:tireFrictionFL="forzaData.tireFrictionFL"
             v-bind:tireFrictionFR="forzaData.tireFrictionFR"

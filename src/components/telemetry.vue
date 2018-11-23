@@ -1,12 +1,14 @@
 <template>
   <div>
     <div>speed: {{ displayedSpeed }}mph</div>
+    <div>power: {{ displayedPower }}mph</div>
+    <div>torque: {{ displayedTorque }}mph</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['speedMPH'],
+  props: ['speedMPH', 'power', 'torque'],
   data() {
     return {
       
@@ -15,6 +17,12 @@ export default {
   computed: {
     displayedSpeed: function () {
       return Math.round(Number(this.speedMPH));
+    },
+    displayedPower: function () {
+      return Math.round(Number(this.power));
+    },
+    displayedTorque: function () {
+      return Math.round(Number(this.torque));
     }
   }
 };
