@@ -3,6 +3,7 @@
     <div>speed: {{ displayedSpeed }}mph</div>
     <div>power: {{ displayedPower }}mph</div>
     <div>torque: {{ displayedTorque }}mph</div>
+    <a href='/#/analytics'>View race analytics</a>
   </div>
 </template>
 

@@ -43,7 +43,6 @@
       <h1>no data</h1>
       <p>to get started, go to your Forza 7 in-game HUD and add a data out host and IP address.</p>
     </div>
-    <a href='/#/analytics'>View race analytics</a>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 const PORT = 4200;
-const HOST = '10.0.1.120';
+const HOST = '172.31.99.84';
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
@@ -10,7 +10,7 @@ const timer = require('timers');
 
 app.use(express.static(path.join(__dirname, 'js')));
 
-const devMode = false;
+const devMode = true;
 let data;
 
 app.listen(3000, () => {
