@@ -12,17 +12,21 @@
           </tachometer>
         </div>
         <div class="col-sm" id="col2">
-          <telemetry 
-            v-bind:speedMPH="forzaData.speedMPH"
-            v-bind:power="forzaData.power"
-            v-bind:torque="forzaData.torque">
-          </telemetry>
-          <tiresDisplay
-            v-bind:tireFrictionFL="forzaData.tireFrictionFL"
-            v-bind:tireFrictionFR="forzaData.tireFrictionFR"
-            v-bind:tireFrictionBL="forzaData.tireFrictionBL"
-            v-bind:tireFrictionBR="forzaData.tireFrictionBR">
-          </tiresDisplay>
+          <div class="row">
+            <telemetry
+              v-bind:speedMPH="forzaData.speedMPH"
+              v-bind:power="forzaData.power"
+              v-bind:torque="forzaData.torque">
+            </telemetry>
+          </div>
+          <div class="row">
+            <tiresDisplay
+              v-bind:tireFrictionFL="forzaData.tireFrictionFL"
+              v-bind:tireFrictionFR="forzaData.tireFrictionFR"
+              v-bind:tireFrictionBL="forzaData.tireFrictionBL"
+              v-bind:tireFrictionBR="forzaData.tireFrictionBR">
+            </tiresDisplay>
+          </div>
         </div>
         <div class="col-sm" id="col3">
           <racestats 
