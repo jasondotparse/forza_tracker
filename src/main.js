@@ -22,6 +22,8 @@ const router = new VueRouter({
   routes: Routes
 })
 
+export const serverBus = new Vue();
+
 new Vue({
   el: "#app",
   render: h => h(App),

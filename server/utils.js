@@ -36,7 +36,7 @@ const generateDummyData = () => {
   return {
     rpmMax: 7500,
     rpmIdle: 800,
-    rpmCurrent: 4900,
+    rpmCurrent: Math.random(0, 1) * 1000,
     speedMPH: Math.random(0, 1),
     power: Math.random(0, 1),
     torque: Math.random(0, 1),

@@ -64,6 +64,9 @@
 </style>
 
 <script>
+
+import { serverBus } from '../main.js';
+
 export default {
   name: "app",
   data() {
@@ -83,10 +86,11 @@ export default {
           this.forzaData = null;
         } else {
           this.forzaData = res.body;
+          serverBus.$emit('updateAnalytics', this.forzaData);
         }
       });
 
     }.bind(this), 33);
-  }
+  },
 };
 </script>

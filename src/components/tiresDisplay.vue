@@ -30,7 +30,21 @@
 <script>
 import * as d3 from 'd3';
 
+const adjustTireColor = (load, element) => {
+  if (load > 1) {
+    element.style("fill", function(d) { return 'red' });
+  } else if (load > .8 && load < 1) {
+    element.style("fill", function(d) { return 'orange' });
+  } else {
+    element.style("fill", function(d) { return 'black' });
+  }
+}
+
 export default {
+  frontLeftSVG: null,
+  frontRightSVG: null,
+  backLeftSVG: null,
+  backRightSVG: null,
   props: ['tireFrictionFL', 'tireFrictionFR', 'tireFrictionBL', 'tireFrictionBR'],
   data() {
     return {
@@ -38,26 +52,29 @@ export default {
     };
   },
   computed: {
-    frictionFL: function () {
-      return this.tireFrictionFL;
+
+  },
+  watch: {
+    tireFrictionFL: function() {
+      adjustTireColor(this.tireFrictionFL, this.frontLeftSVG);
     },
-    frictionFR: function () {
-      return this.tireFrictionFR;
+    tireFrictionFR: function() {
+      adjustTireColor(this.tireFrictionFR, this.frontRightSVG);
     },
-    frictionBL: function () {
-      return this.tireFrictionBL;
+    tireFrictionBL: function() {
+      adjustTireColor(this.tireFrictionBL, this.backLeftSVG);
     },
-    frictionBR: function () {
-      return this.tireFrictionBR;
-    },
+    tireFrictionBR: function() {
+      adjustTireColor(this.tireFrictionBR, this.backRightSVG);
+    }
   },
   mounted: function() {
     this.svgContainer = d3.select("#tiresOverlay").append("svg").attr("width", 200).attr("height", 300);
 
-    this.frontLeft = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
-    this.frontRight = this.svgContainer.append("rect").attr("x", 110).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
-    this.backLeft = this.svgContainer.append("rect").attr("x", 0).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
-    this.backRight = this.svgContainer.append("rect").attr("x", 110).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.frontLeftSVG = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.frontRightSVG = this.svgContainer.append("rect").attr("x", 110).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.backLeftSVG = this.svgContainer.append("rect").attr("x", 0).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.backRightSVG = this.svgContainer.append("rect").attr("x", 110).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
   }
 };
 </script>
