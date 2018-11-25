@@ -1,11 +1,14 @@
 <template>
   <div id="container">
     <img :src="require('../assets/overheadCar.png')" width="400" height="225" id="overheadCarImg"/>
-    <div id="tireFrictionVisual"></div>
+    <div id="tiresOverlay"></div>
   </div>
 </template>
 
 <style>
+  #container {
+    position: relative;
+  }
   #overheadCarImg {
       -webkit-transform: rotate(270deg);
       -moz-transform: rotate(270deg);
@@ -14,6 +17,13 @@
       transform: rotate(270deg);
       padding-right: 100px;
       opacity: .5;
+  }
+  #tiresOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 130px;
+    padding-top: 50px;
   }
 </style>
 
@@ -42,12 +52,12 @@ export default {
     },
   },
   mounted: function() {
-    this.svgContainer = d3.select("#tireFrictionVisual").append("svg").attr("width", 200).attr("height", 250);
+    this.svgContainer = d3.select("#tiresOverlay").append("svg").attr("width", 200).attr("height", 300);
 
     this.frontLeft = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
-    this.frontRight = this.svgContainer.append("rect").attr("x", 100).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.frontRight = this.svgContainer.append("rect").attr("x", 110).attr("y", 0).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
     this.backLeft = this.svgContainer.append("rect").attr("x", 0).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
-    this.backRight = this.svgContainer.append("rect").attr("x", 100).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
+    this.backRight = this.svgContainer.append("rect").attr("x", 110).attr("y", 175).attr("z", 10).attr("width", 30).attr("height", 60).style("fill", function(d) { return 'black' });
   }
 };
 </script>
