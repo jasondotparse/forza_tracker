@@ -1,10 +1,13 @@
-const totals = {
-  packetsProcessed: 0,
-  totalSpeed: 0,
-  totalRPMs: 0
+const updateAnalyticsObj = (packet, analyticsObj) => {
+  analyticsObj.packetsProcessed++;
+  
+  // todo: update all other properties of the analytics object.
+
+  return analyticsObj;
 }
 
-const buildDataObj = (packet, packetsProcessed) => {
+const buildDataObj = (packet, analyticsObj) => {
+
   return {
     // telemetry data
     rpmMax: packet.slice(8, 12).readFloatLE(0), // f32
@@ -36,16 +39,16 @@ const buildDataObj = (packet, packetsProcessed) => {
     raceCurrentLap: packet.slice(292, 296).readFloatLE(0), // f32
     lapNumber: packet.slice(300, 302).readUInt16LE(0), // u16
 
-    // computed analytics
+    // computed analytics from analytics object
     analytics: {
-      dataPointsCount: packetsProcessed,
-      averageSpeed: 100,
-      averageRPMs: 4000
+      dataPointsCount: analyticsObj.packetsProcessed,
+      averageSpeed: analyticsObj.totalSpeed / analyticsObj.packetsProcessed,
+      averageRPMs: analyticsObj.totalRPMs / analyticsObj.packetsProcessed
     }
   };
 }
 
-const generateDummyData = (packetsProcessed) => {
+const generateDummyData = (analyticsObj) => {
   return {
     rpmMax: 7500,
     rpmIdle: 800,
@@ -67,16 +70,17 @@ const generateDummyData = (packetsProcessed) => {
     lastLap: Math.random(0, 1),
     raceCurrentLap: Math.random(0, 1),
     lapNumber: Math.random(0, 1),
-    
+
     analytics: {
-      dataPointsCount: packetsProcessed,
-      averageSpeed: 100,
-      averageRPMs: 4000
+      dataPointsCount: analyticsObj.packetsProcessed,
+      averageSpeed: analyticsObj.averageSpeed,
+      averageRPMs: analyticsObj.averageRPMs
     }
   }
 }
 
 module.exports = {
   buildDataObj, 
-  generateDummyData
+  generateDummyData,
+  updateAnalyticsObj
 }
