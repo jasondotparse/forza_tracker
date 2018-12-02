@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'js')));
 const devMode = true;
 let data;
 let analyticsObj = {
-  packetsProcessed: 0,
+  dataPointsCount: 0,
   totalRPMs: 0,
   totalSpeed: 0,
   averageSpeed: 0,
@@ -62,7 +62,7 @@ if (devMode) {
   timer.setInterval(() => {
 
     // udpate analytics object with artificial data
-    analyticsObj.packetsProcessed++;
+    analyticsObj.dataPointsCount++;
     analyticsObj.totalRPMs += Math.random(0, 1) * 1000;
     analyticsObj.totalSpeed += Math.random(0, 1) * 50;
     analyticsObj.averageSpeed = 100;

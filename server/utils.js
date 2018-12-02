@@ -1,7 +1,6 @@
+// updated all properties of the passed in analytics object.
 const updateAnalyticsObj = (packet, analyticsObj) => {
-  analyticsObj.packetsProcessed++;
-  
-  // todo: update all other properties of the analytics object.
+  // todo: update all properties of the analytics object.
 
   return analyticsObj;
 }
@@ -39,12 +38,8 @@ const buildDataObj = (packet, analyticsObj) => {
     raceCurrentLap: packet.slice(292, 296).readFloatLE(0), // f32
     lapNumber: packet.slice(300, 302).readUInt16LE(0), // u16
 
-    // computed analytics from analytics object
-    analytics: {
-      dataPointsCount: analyticsObj.packetsProcessed,
-      averageSpeed: analyticsObj.totalSpeed / analyticsObj.packetsProcessed,
-      averageRPMs: analyticsObj.totalRPMs / analyticsObj.packetsProcessed
-    }
+    // add in computed analytics from analytics object
+    analytics: analyticsObj
   };
 }
 
@@ -71,11 +66,7 @@ const generateDummyData = (analyticsObj) => {
     raceCurrentLap: Math.random(0, 1),
     lapNumber: Math.random(0, 1),
 
-    analytics: {
-      dataPointsCount: analyticsObj.packetsProcessed,
-      averageSpeed: analyticsObj.averageSpeed,
-      averageRPMs: analyticsObj.averageRPMs
-    }
+    analytics: analyticsObj
   }
 }
 
