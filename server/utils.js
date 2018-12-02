@@ -1,4 +1,10 @@
-const buildDataObj = packet => {
+const totals = {
+  packetsProcessed: 0,
+  totalSpeed: 0,
+  totalRPMs: 0
+}
+
+const buildDataObj = (packet, packetsProcessed) => {
   return {
     // telemetry data
     rpmMax: packet.slice(8, 12).readFloatLE(0), // f32
@@ -28,11 +34,18 @@ const buildDataObj = packet => {
     raceBestLap: packet.slice(284, 288).readFloatLE(0), // f32
     lastLap: packet.slice(288,292).readFloatLE(0), // f32
     raceCurrentLap: packet.slice(292, 296).readFloatLE(0), // f32
-    lapNumber: packet.slice(300, 302).readUInt16LE(0) // u16
+    lapNumber: packet.slice(300, 302).readUInt16LE(0), // u16
+
+    // computed analytics
+    analytics: {
+      dataPointsCount: packetsProcessed,
+      averageSpeed: 100,
+      averageRPMs: 4000
+    }
   };
 }
 
-const generateDummyData = () => {
+const generateDummyData = (packetsProcessed) => {
   return {
     rpmMax: 7500,
     rpmIdle: 800,
@@ -54,6 +67,12 @@ const generateDummyData = () => {
     lastLap: Math.random(0, 1),
     raceCurrentLap: Math.random(0, 1),
     lapNumber: Math.random(0, 1),
+    
+    analytics: {
+      dataPointsCount: packetsProcessed,
+      averageSpeed: 100,
+      averageRPMs: 4000
+    }
   }
 }
 

@@ -11,6 +11,7 @@ const timer = require('timers');
 app.use(express.static(path.join(__dirname, 'js')));
 
 const devMode = true;
+let packetsProcessed = 0;
 let data;
 
 app.listen(3000, () => {
@@ -28,6 +29,7 @@ app.get(`/dist/build.js`, (req, res) => {
 app.get(`/data`, (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   if (data) {
+    console.log(data.analytics);
     res.send(JSON.stringify(data));
   } else {
     res.send('no data');
@@ -43,13 +45,14 @@ server.on('listening', function() {
 server.on('message', (message, remote) => {
   const raceIsOn = message.slice(0, 4).readUInt16LE(0); // s32
   if (raceIsOn) {
-    data = buildDataObj(message);
+    packetsProcessed++;
+    data = buildDataObj(message, packetsProcessed);
   }
 });
 
 if (devMode) {
   timer.setInterval(() => {
-    data = generateDummyData();
+    data = generateDummyData(packetsProcessed);
   }, 50)
 }
 

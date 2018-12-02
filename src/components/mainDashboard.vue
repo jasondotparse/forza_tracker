@@ -86,11 +86,13 @@ export default {
           this.forzaData = null;
         } else {
           this.forzaData = res.body;
-          serverBus.$emit('updateAnalytics', this.forzaData);
+          
+          // send analytics to analytics component
+          serverBus.$emit('updateAnalytics', this.forzaData.analytics);
         }
       });
 
-    }.bind(this), 33);
+    }.bind(this), 100);
   },
 };
 </script>

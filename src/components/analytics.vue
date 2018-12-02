@@ -17,24 +17,18 @@ export default {
   data() {
     return {
       dataPointsCount: 0,
-      totalSpeed: 0,
-      totalRPMs: 0
+      averageSpeed: 0,
+      averageRPMs: 0
     };
   },
   computed: {
-    averageSpeed: function() {
-      return this.totalSpeed / this.dataPointsCount;
-    },
-    averageRPMs: function() {
-      return this.totalRPMs / this.dataPointsCount
-    }
+
   },
   created() {
     serverBus.$on('updateAnalytics', (server) => {
-      // all data from API included in the 'server' object
-      this.dataPointsCount++;
-      this.totalSpeed += Number(server.speedMPH);
-      this.totalRPMs += Number(server.rpmCurrent);
+      this.dataPointsCount = server.dataPointsCount;
+      this.averageSpeed = server.averageSpeed;
+      this.averageRPMs = server.averageRPMs;
     });
   }
 };
