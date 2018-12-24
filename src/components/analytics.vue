@@ -14,6 +14,9 @@ import { serverBus } from '../main.js';
 
 /*
   displays the following information to the user:
+
+  FOR EACH LAP:
+  lap time
   avg speed
   avg rpm
   avg torque

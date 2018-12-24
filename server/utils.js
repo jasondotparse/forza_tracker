@@ -1,13 +1,21 @@
 // updated all properties of the passed in analytics object.
 const updateAnalyticsObj = (dashboardData, analyticsObj) => {
-  // todo: update all properties of the analytics object.
+  // todo: update all properties of the analytics object
 
   return {
     dataPointsCount: analyticsObj.dataPointsCount + 1,
     totalRPMs: analyticsObj.totalRPMs + dashboardData.rpmCurrent,
     totalSpeed: analyticsObj.totalSpeed + dashboardData.speedMPH,
     averageSpeed: analyticsObj.totalSpeed / analyticsObj.dataPointsCount,
-    averageRPMs: analyticsObj.totalRPMs / analyticsObj.dataPointsCount
+    averageRPMs: analyticsObj.totalRPMs / analyticsObj.dataPointsCount,
+    totalFrictionFL: 0,
+    averageFrictionFL: 0,
+    totalFrictionFR: 0,
+    averageFrictionFR: 0,
+    totalFrictionBL: 0,
+    averageFrictionBL: 0,
+    totalFrictionBR: 0,
+    averageFrictionBR: 0
   };
 }
 
