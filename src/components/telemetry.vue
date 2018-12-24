@@ -1,15 +1,16 @@
 <template>
   <div>
     <div>speed: {{ displayedSpeed }}mph</div>
-    <div>power: {{ displayedPower }}mph</div>
-    <div>torque: {{ displayedTorque }}mph</div>
+    <div>power: {{ displayedPower }}</div>
+    <div>torque: {{ displayedTorque }}</div>
+    <div>fuel: {{displayedFuel}}%</div>
     <a href='/#/analytics'>View race analytics</a>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['speedMPH', 'power', 'torque'],
+  props: ['speedMPH', 'power', 'torque', 'fuel'],
   data() {
     return {
       
@@ -24,6 +25,9 @@ export default {
     },
     displayedTorque: function () {
       return Math.round(Number(this.torque));
+    },
+    displayedFuel: function () {
+      return Number(this.fuel);
     }
   }
 };

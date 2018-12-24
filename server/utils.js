@@ -1,6 +1,7 @@
 // updated all properties of the passed in analytics object.
 const updateAnalyticsObj = (packet, analyticsObj) => {
   // todo: update all properties of the analytics object.
+  analyticsObj.dataPointsCount++;
 
   return analyticsObj;
 }
@@ -15,6 +16,7 @@ const buildDataObj = (packet, analyticsObj) => {
     speedMPH: packet.slice(244, 248).readFloatLE(0) * 2.23, // f32
     power: packet.slice(248, 252).readFloatLE(0), // f32
     torque: packet.slice(252, 256).readFloatLE(0), // f32
+    fuel: packet.slice(276, 280).readFloatLE(0), // f32
 
     /* todo: find the correct data to get current gear */
     gear: packet.slice(307, 308).readInt8(0), // u8

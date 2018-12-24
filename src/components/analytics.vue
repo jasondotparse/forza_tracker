@@ -12,6 +12,15 @@
 
 import { serverBus } from '../main.js';
 
+/*
+  displays the following information to the user:
+  avg speed
+  avg rpm
+  avg torque
+  avg tire friction in each tire (click for tuning suggestion to appear on right)
+  time spent in each gear, as a histogram (click for tuning suggestion to appear on right)
+*/
+
 export default {
   props: [],
   data() {

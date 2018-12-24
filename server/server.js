@@ -1,5 +1,5 @@
 const PORT = 4200;
-const HOST = '172.31.99.84';
+const HOST = '10.0.1.114';
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
@@ -10,7 +10,7 @@ const timer = require('timers');
 
 app.use(express.static(path.join(__dirname, 'js')));
 
-const devMode = true;
+const devMode = false;
 let data;
 let analyticsObj = {
   dataPointsCount: 0,

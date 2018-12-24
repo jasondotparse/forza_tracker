@@ -16,7 +16,8 @@
             <telemetry
               v-bind:speedMPH="forzaData.speedMPH"
               v-bind:power="forzaData.power"
-              v-bind:torque="forzaData.torque">
+              v-bind:torque="forzaData.torque"
+              v-bind:fuel="forzaData.fuel">
             </telemetry>
           </div>
           <div class="row">
