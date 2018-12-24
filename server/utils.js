@@ -1,12 +1,17 @@
 // updated all properties of the passed in analytics object.
-const updateAnalyticsObj = (packet, analyticsObj) => {
+const updateAnalyticsObj = (dashboardData, analyticsObj) => {
   // todo: update all properties of the analytics object.
-  analyticsObj.dataPointsCount++;
 
-  return analyticsObj;
+  return {
+    dataPointsCount: analyticsObj.dataPointsCount + 1,
+    totalRPMs: analyticsObj.totalRPMs + dashboardData.rpmCurrent,
+    totalSpeed: analyticsObj.totalSpeed + dashboardData.speedMPH,
+    averageSpeed: analyticsObj.totalSpeed / analyticsObj.dataPointsCount,
+    averageRPMs: analyticsObj.totalRPMs / analyticsObj.dataPointsCount
+  };
 }
 
-const buildDataObj = (packet, analyticsObj) => {
+const buildDataObj = (packet) => {
 
   return {
     // telemetry data
@@ -40,8 +45,6 @@ const buildDataObj = (packet, analyticsObj) => {
     raceCurrentLap: packet.slice(292, 296).readFloatLE(0), // f32
     lapNumber: packet.slice(300, 302).readUInt16LE(0), // u16
 
-    // add in computed analytics from analytics object
-    analytics: analyticsObj
   };
 }
 

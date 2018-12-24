@@ -51,10 +51,10 @@ server.on('message', (message, remote) => {
   const raceIsOn = message.slice(0, 4).readUInt16LE(0); // s32
   if (raceIsOn) {
     // update the analytics using data in the packet.
-    updateAnalyticsObj(message, analyticsObj);
-
+    let dashboardData = buildDataObj(message);
+    analyticsObj = updateAnalyticsObj(dashboardData, analyticsObj);
     // update the data object.
-    data = buildDataObj(message, analyticsObj);
+    data = { ...dashboardData, analytics: analyticsObj };
   }
 });
 
