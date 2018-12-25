@@ -1,28 +1,33 @@
 // updated all properties of the passed in analytics object.
+const _ = require('lodash');
 const updateAnalyticsObj = (dashboardData, analyticsObj) => {
 
   if (analyticsObj.currentLapNo < dashboardData.lapNumber) {
     // new lap! record previous lap data in analytics Obj and reset currentLapData.
-    analyticsObj[`lap${dashboardData.lapNumber - 1}`] = analyticsObj.currentLapData;
+    analyticsObj[`lap${dashboardData.lapNumber}`] = analyticsObj.currentLapData;
     analyticsObj.currentLapNo++;
-    analyticsObj.currentLapData = {
-      dataPointsCount: 0,
-      totalRPMs: 0,
-      totalSpeed: 0,
-      averageSpeed: 0,
-      averageRPMs: 0,
-      totalFrictionFL: 0,
-      averageFrictionFL: 0,
-      totalFrictionFR: 0,
-      averageFrictionFR: 0,
-      totalFrictionBL: 0,
-      averageFrictionBL: 0,
-      totalFrictionBR: 0,
-      averageFrictionBR: 0
+
+    for (const key in analyticsObj.currentLapData) {
+      analyticsObj.currentLapData[key] = 0;
     }
   }
 
   // update analyticsObj
+  analyticsObj.currentLapData = {
+    dataPointsCount: analyticsObj.currentLapData.dataPointsCount + 1,
+    totalRPMs: 0,
+    totalSpeed: 0,
+    averageSpeed: 0,
+    averageRPMs: 0,
+    totalFrictionFL: 0,
+    averageFrictionFL: 0,
+    totalFrictionFR: 0,
+    averageFrictionFR: 0,
+    totalFrictionBL: 0,
+    averageFrictionBL: 0,
+    totalFrictionBR: 0,
+    averageFrictionBR: 0
+  }
 
   return analyticsObj;
 }

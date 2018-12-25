@@ -26,14 +26,18 @@ import { serverBus } from '../main.js';
 export default {
   props: [],
   data() {
-    return {};
+    return {
+      allAnalyticsData: {}
+    };
   },
   computed: {
 
   },
   created() {
     serverBus.$on('updateAnalytics', (server) => {
-      console.log(server)
+      this.analyticsData = server;
+
+      // todo: analytics component now receives data from each lap, as well as the current lap. Display it in UI.
     });
   }
 };
