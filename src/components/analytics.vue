@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>this is the analytics component!</div>
-    <div>total data points processed: {{ dataPointsCount }}</div>
-    <div>average speed: {{ averageSpeed }}</div>
-    <div>average RPM: {{ averageRPMs }}</div>
+    <h1>race analytics</h1>
+    <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
+
+    
     <a href='/#/'>Back to dashboard</a>
   </div>
 </template>
@@ -14,7 +14,6 @@ import { serverBus } from '../main.js';
 
 /*
   displays the following information to the user:
-
   FOR EACH LAP:
   lap time
   avg speed
@@ -27,20 +26,14 @@ import { serverBus } from '../main.js';
 export default {
   props: [],
   data() {
-    return {
-      dataPointsCount: 0,
-      averageSpeed: 0,
-      averageRPMs: 0
-    };
+    return {};
   },
   computed: {
 
   },
   created() {
     serverBus.$on('updateAnalytics', (server) => {
-      this.dataPointsCount = server.dataPointsCount;
-      this.averageSpeed = server.averageSpeed;
-      this.averageRPMs = server.averageRPMs;
+      console.log(server)
     });
   }
 };

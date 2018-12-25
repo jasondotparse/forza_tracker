@@ -1,5 +1,3 @@
-const PORT = 4200;
-const HOST = '10.0.1.114';
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const express = require('express');
@@ -8,25 +6,31 @@ const app = express();
 const { buildDataObj, generateDummyData, updateAnalyticsObj } = require('./utils');
 const timer = require('timers');
 const _ = require('lodash');
+const ip = require("ip");
+const PORT = 4200;
+const HOST = ip.address();
 
 app.use(express.static(path.join(__dirname, 'js')));
 
 const devMode = false;
 let data;
 let analyticsObj = {
-  dataPointsCount: 0,
-  totalRPMs: 0,
-  totalSpeed: 0,
-  averageSpeed: 0,
-  averageRPMs: 0,
-  totalFrictionFL: 0,
-  averageFrictionFL: 0,
-  totalFrictionFR: 0,
-  averageFrictionFR: 0,
-  totalFrictionBL: 0,
-  averageFrictionBL: 0,
-  totalFrictionBR: 0,
-  averageFrictionBR: 0
+  currentLapNo: 0,
+  currentLapData: {
+    dataPointsCount: 0,
+    totalRPMs: 0,
+    totalSpeed: 0,
+    averageSpeed: 0,
+    averageRPMs: 0,
+    totalFrictionFL: 0,
+    averageFrictionFL: 0,
+    totalFrictionFR: 0,
+    averageFrictionFR: 0,
+    totalFrictionBL: 0,
+    averageFrictionBL: 0,
+    totalFrictionBR: 0,
+    averageFrictionBR: 0
+  }
 };
 
 app.listen(3000, () => {
