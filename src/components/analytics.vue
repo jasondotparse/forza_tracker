@@ -3,6 +3,9 @@
     <h1>race analytics</h1>
     <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
 
+    <li v-for="value in lapData">
+      dataPointsCount: {{ value.dataPointsCount }}
+    </li>
     
     <a href='/#/'>Back to dashboard</a>
   </div>
@@ -11,6 +14,7 @@
 <script>
 
 import { serverBus } from '../main.js';
+import Vue from "vue";
 
 /*
   displays the following information to the user:
@@ -27,7 +31,8 @@ export default {
   props: [],
   data() {
     return {
-      allAnalyticsData: {}
+      allAnalyticsData: {},
+      lapData: {}
     };
   },
   computed: {
@@ -35,9 +40,14 @@ export default {
   },
   created() {
     serverBus.$on('updateAnalytics', (server) => {
-      this.analyticsData = server;
+      this.allAnalyticsData = server;
 
-      // todo: analytics component now receives data from each lap, as well as the current lap. Display it in UI.
+      for (const key in this.allAnalyticsData) {
+        if (key.includes('lap') || key === 'currentLapData') {
+          Vue.set(this.lapData, key, this.allAnalyticsData[key])
+        }
+      }
+
     });
   }
 };
