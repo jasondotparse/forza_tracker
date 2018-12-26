@@ -1,10 +1,11 @@
-// updated all properties of the passed in analytics object.
 const _ = require('lodash');
+
+// updates all properties of the passed in analytics object.
 const updateAnalyticsObj = (dashboardData, analyticsObj) => {
 
+  // if there is a new lap, record previous lap data in analytics Obj and reset currentLapData.
   if (analyticsObj.currentLapNo < dashboardData.lapNumber) {
-    // new lap! record previous lap data in analytics Obj and reset currentLapData.
-    analyticsObj[`lap${dashboardData.lapNumber}`] = analyticsObj.currentLapData;
+    analyticsObj[`lap${dashboardData.lapNumber}`] =  { ...analyticsObj.currentLapData };
     analyticsObj.currentLapNo++;
 
     for (const key in analyticsObj.currentLapData) {
@@ -15,10 +16,10 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
   // update analyticsObj
   analyticsObj.currentLapData = {
     dataPointsCount: analyticsObj.currentLapData.dataPointsCount + 1,
-    totalRPMs: 0,
-    totalSpeed: 0,
-    averageSpeed: 0,
-    averageRPMs: 0,
+    totalRPMs: analyticsObj.currentLapData.totalRPMs + dashboardData.rpmCurrent,
+    totalSpeed: analyticsObj.currentLapData.totalSpeed + dashboardData.speedMPH,
+    averageSpeed: analyticsObj.currentLapData.totalSpeed / analyticsObj.currentLapData.dataPointsCount,
+    averageRPMs: analyticsObj.currentLapData.totalRPMs / analyticsObj.currentLapData.dataPointsCount,
     totalFrictionFL: 0,
     averageFrictionFL: 0,
     totalFrictionFR: 0,
@@ -91,7 +92,6 @@ const generateDummyData = (analyticsObj) => {
     lastLap: Math.random(0, 1),
     raceCurrentLap: Math.random(0, 1),
     lapNumber: Math.random(0, 1),
-
     analytics: analyticsObj
   }
 }
