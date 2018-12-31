@@ -3,10 +3,17 @@
     <h1>race analytics</h1>
     <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
 
-    <div v-for="value in lapData" :key="value.id">
-      dataPointsCount: {{ value.dataPointsCount }}
-      averageRPMs: {{ value.averageRPMs }}
-      averageSpeed: {{ value.averageSpeed }}
+    <div v-for="(value, key) in lapData" :key="value.id">
+      <h3>{{key}}</h3>
+      <div>
+        dataPointsCount: {{ value.dataPointsCount }}
+        averageRPMs: {{ value.averageRPMs }}
+        averageSpeed: {{ value.averageSpeed }}
+        averageTireFrictionFL: {{ value.averageFrictionFL }}
+        averageTireFrictionFR: {{ value.averageFrictionFR }}
+        averageTireFrictionBL: {{ value.averageFrictionBL }}
+        averageTireFrictionBR: {{ value.averageFrictionBR }}
+      </div>
     </div>
     
     <a href='/#/'>Back to dashboard</a>
@@ -49,8 +56,6 @@ export default {
           Vue.set(this.lapData, key, this.allAnalyticsData[key])
         }
       }
-
-      console.log(this.lapData)
 
     });
   }

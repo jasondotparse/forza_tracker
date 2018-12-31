@@ -20,14 +20,14 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
     totalSpeed: analyticsObj.currentLapData.totalSpeed + dashboardData.speedMPH,
     averageSpeed: analyticsObj.currentLapData.totalSpeed / analyticsObj.currentLapData.dataPointsCount,
     averageRPMs: analyticsObj.currentLapData.totalRPMs / analyticsObj.currentLapData.dataPointsCount,
-    totalFrictionFL: 0,
-    averageFrictionFL: 0,
-    totalFrictionFR: 0,
-    averageFrictionFR: 0,
-    totalFrictionBL: 0,
-    averageFrictionBL: 0,
-    totalFrictionBR: 0,
-    averageFrictionBR: 0
+    totalFrictionFL: analyticsObj.currentLapData.totalFrictionFL + dashboardData.tireFrictionFL,
+    averageFrictionFL: analyticsObj.currentLapData.totalFrictionFL / analyticsObj.currentLapData.dataPointsCount,
+    totalFrictionFR: analyticsObj.currentLapData.totalFrictionFR + dashboardData.tireFrictionFR,
+    averageFrictionFR: analyticsObj.currentLapData.totalFrictionFR / analyticsObj.currentLapData.dataPointsCount,
+    totalFrictionBL: analyticsObj.currentLapData.totalFrictionBL + dashboardData.tireFrictionBL,
+    averageFrictionBL: analyticsObj.currentLapData.totalFrictionBL / analyticsObj.currentLapData.dataPointsCount,
+    totalFrictionBR: analyticsObj.currentLapData.totalFrictionBR + dashboardData.tireFrictionBR,
+    averageFrictionBR: analyticsObj.currentLapData.totalFrictionBR / analyticsObj.currentLapData.dataPointsCount
   }
 
   return analyticsObj;
