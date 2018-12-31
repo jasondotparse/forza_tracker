@@ -18,7 +18,7 @@ Vue.component("tiresDisplay", TiresDisplay);
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes: Routes
 })
 

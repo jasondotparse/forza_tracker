@@ -27,7 +27,15 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
     totalFrictionBL: analyticsObj.currentLapData.totalFrictionBL + dashboardData.tireFrictionBL,
     averageFrictionBL: analyticsObj.currentLapData.totalFrictionBL / analyticsObj.currentLapData.dataPointsCount,
     totalFrictionBR: analyticsObj.currentLapData.totalFrictionBR + dashboardData.tireFrictionBR,
-    averageFrictionBR: analyticsObj.currentLapData.totalFrictionBR / analyticsObj.currentLapData.dataPointsCount
+    averageFrictionBR: analyticsObj.currentLapData.totalFrictionBR / analyticsObj.currentLapData.dataPointsCount,
+    gear1Time: dashboardData.gear === 1 ? analyticsObj.currentLapData.gear1Time + 1 : analyticsObj.currentLapData.gear1Time,
+    gear2Time: dashboardData.gear === 2 ? analyticsObj.currentLapData.gear2Time + 1 : analyticsObj.currentLapData.gear2Time,
+    gear3Time: dashboardData.gear === 3 ? analyticsObj.currentLapData.gear3Time + 1 : analyticsObj.currentLapData.gear3Time,
+    gear4Time: dashboardData.gear === 4 ? analyticsObj.currentLapData.gear4Time + 1 : analyticsObj.currentLapData.gear4Time,
+    gear5Time: dashboardData.gear === 5 ? analyticsObj.currentLapData.gear5Time + 1 : analyticsObj.currentLapData.gear5Time,
+    gear6Time: dashboardData.gear === 6 ? analyticsObj.currentLapData.gear6Time + 1 : analyticsObj.currentLapData.gear6Time,
+    gear7Time: dashboardData.gear === 7 ? analyticsObj.currentLapData.gear7Time + 1 : analyticsObj.currentLapData.gear7Time,
+    gear8Time: dashboardData.gear === 8 ? analyticsObj.currentLapData.gear8Time + 1 : analyticsObj.currentLapData.gear8Time
   }
 
   return analyticsObj;
