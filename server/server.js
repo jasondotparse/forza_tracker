@@ -12,6 +12,15 @@ const HOST = ip.address();
 
 app.use(express.static(path.join(__dirname, 'js')));
 
+/*
+  request is made for index.html
+  server is created with new port
+  user is told port # and IP address to enter into forza 7
+  main.js will make get requests to http://localhost:3000/data/PORT#
+  server is set to listen to messages sent to that port #
+  on get requests to /data/PORT#, send the data 
+*/
+
 const devMode = false;
 let data;
 let analyticsObj = {

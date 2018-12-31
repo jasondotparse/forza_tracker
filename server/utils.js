@@ -6,6 +6,7 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
   // if there is a new lap, record previous lap data in analytics Obj and reset currentLapData.
   if (analyticsObj.currentLapNo < dashboardData.lapNumber) {
     analyticsObj[`lap${dashboardData.lapNumber}`] =  { ...analyticsObj.currentLapData };
+    analyticsObj[`lap${dashboardData.lapNumber}`].lapTime = dashboardData.lastLap
     analyticsObj.currentLapNo++;
 
     for (const key in analyticsObj.currentLapData) {
@@ -35,7 +36,8 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
     gear5Time: dashboardData.gear === 5 ? analyticsObj.currentLapData.gear5Time + 1 : analyticsObj.currentLapData.gear5Time,
     gear6Time: dashboardData.gear === 6 ? analyticsObj.currentLapData.gear6Time + 1 : analyticsObj.currentLapData.gear6Time,
     gear7Time: dashboardData.gear === 7 ? analyticsObj.currentLapData.gear7Time + 1 : analyticsObj.currentLapData.gear7Time,
-    gear8Time: dashboardData.gear === 8 ? analyticsObj.currentLapData.gear8Time + 1 : analyticsObj.currentLapData.gear8Time
+    gear8Time: dashboardData.gear === 8 ? analyticsObj.currentLapData.gear8Time + 1 : analyticsObj.currentLapData.gear8Time,
+    lapTime: dashboardData.raceCurrentLap
   }
 
   return analyticsObj;

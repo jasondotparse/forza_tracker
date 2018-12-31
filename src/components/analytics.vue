@@ -3,30 +3,46 @@
     <h1>race analytics</h1>
     <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
 
-    <div v-for="(value, key) in lapData" :key="value.id">
-      <h3>{{key}}</h3>
-      <div>
-        dataPointsCount: {{ value.dataPointsCount }}
-        averageRPMs: {{ value.averageRPMs }}
-        averageSpeed: {{ value.averageSpeed }}
-        averageTireFrictionFL: {{ value.averageFrictionFL }}
-        averageTireFrictionFR: {{ value.averageFrictionFR }}
-        averageTireFrictionBL: {{ value.averageFrictionBL }}
-        averageTireFrictionBR: {{ value.averageFrictionBR }}
-        gear1Time: {{ value.gear1Time }}
-        gear2Time: {{ value.gear2Time }}
-        gear3Time: {{ value.gear3Time }}
-        gear4Time: {{ value.gear4Time }}
-        gear5Time: {{ value.gear5Time }}
-        gear6Time: {{ value.gear6Time }}
-        gear7Time: {{ value.gear7Time }}
-        gear8Time: {{ value.gear8Time }}
-      </div>
-    </div>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">lap</th>
+          <th scope="col">time</th>
+          <th scope="col">data points</th>
+          <th scope="col">avg RPMs</th>
+          <th scope="col">avg speed</th>
+          <th scope="col">avg tire load %, FL</th>
+          <th scope="col">avg tire load %, FR</th>
+          <th scope="col">avg tire load %, BL</th>
+          <th scope="col">avg tire load %, BR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(value, key) in lapData" :key="value.id">
+          <th scope="row">{{key}}</th>
+          <td>{{ value.lapTime.toFixed(3) }}</td>
+          <td>{{ value.dataPointsCount }}</td>
+          <td>{{ value.averageRPMs.toFixed(0) }}</td>
+          <td>{{ value.averageSpeed.toFixed(2) }}</td>
+          <td>{{ value.averageFrictionFL.toFixed(2) }}</td>
+          <td>{{ value.averageFrictionFR.toFixed(2) }}</td>
+          <td>{{ value.averageFrictionBL.toFixed(2) }}</td>
+          <td>{{ value.averageFrictionBR.toFixed(2) }}</td>
+        </tr>
+      </tbody>
+    </table>
     
     <a href='/#/'>Back to dashboard</a>
   </div>
 </template>
+
+<style>
+
+.table {
+  font-size: 12px;
+}
+
+</style>
 
 <script>
 
