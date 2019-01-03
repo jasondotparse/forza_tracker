@@ -3,7 +3,8 @@
     <h1>race analytics</h1>
     <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
 
-    <table class="table table-striped">
+    <div class="row">
+      <table class="table table-striped col-sm" id="col1">
       <thead class="thead-dark">
         <tr>
           <th scope="col">lap</th>
@@ -30,9 +31,13 @@
           <td>{{ value.averageFrictionBR.toFixed(2) }}</td>
         </tr>
       </tbody>
-    </table>
-    
-    <a href='/#/'>Back to dashboard</a>
+      </table>
+      <div class="col-sm" id="histogram">
+        <h3>histogram will go here</h3>
+      </div>
+    </div>
+  
+  <a href='/#/'>Back to dashboard</a>
   </div>
 </template>
 
@@ -40,6 +45,11 @@
 
 .table {
   font-size: 12px;
+  padding: 10px;
+}
+
+.row {
+  margin-left: 10px;
 }
 
 </style>
