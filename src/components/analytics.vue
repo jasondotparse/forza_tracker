@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(value, key) in lapData" :key="value.id">
+        <tr v-for="(value, key) in lapData" :key="value.id" v-on:click="rowClicked(key)">
           <th scope="row">{{key}}</th>
           <td>{{ value.lapTime.toFixed(3) }}</td>
           <td>{{ value.dataPointsCount }}</td>
@@ -34,6 +34,7 @@
       </table>
       <div class="col-sm" id="histogram">
         <h3>histogram will go here</h3>
+        <div id="histogramSVG"></div>
       </div>
     </div>
   
@@ -52,25 +53,18 @@
   margin-left: 10px;
 }
 
+#gear1Time {
+  height: 600px;
+}
+
 </style>
 
 <script>
 
 import { serverBus } from '../main.js';
 import Vue from "vue";
-
-/*
-  displays the following information to the user:
-  FOR EACH LAP:
-  lap time
-  avg speed
-  avg rpm
-  avg torque
-  avg tire friction in each tire (click for tuning suggestion to appear on right)
-  time spent in each gear, as a histogram (click for tuning suggestion to appear on right)
-*/
-
 import { router } from '../main.js';
+import * as d3 from 'd3';
 
 export default {
   props: [],
@@ -82,6 +76,11 @@ export default {
   },
   computed: {
 
+  },
+  methods: {
+    rowClicked: function(row){
+      console.log(row);
+    }
   },
   created() {
     serverBus.$on('updateAnalytics', (server) => {
@@ -100,6 +99,22 @@ export default {
         router.push('/')
       }
     }, 500)
+  },
+  watch: {
+    allAnalyticsData: function(newVal, oldVal) {
+      console.log('allAnalyticsData has been updated.')
+    }
+  },
+  mounted: function() {
+    this.svgContainer = d3.select("#histogramSVG").append("svg").attr("width", 80).attr("height", 100);
+    this.gear1SVG = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 15).style("fill", function(d) { return 'black' });
+    this.gear2SVG = this.svgContainer.append("rect").attr("x", 10).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 20).style("fill", function(d) { return 'black' });
+    this.gear3SVG = this.svgContainer.append("rect").attr("x", 20).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 40).style("fill", function(d) { return 'black' });
+    this.gear4SVG = this.svgContainer.append("rect").attr("x", 30).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 50).style("fill", function(d) { return 'black' });
+    this.gear5SVG = this.svgContainer.append("rect").attr("x", 40).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 100).style("fill", function(d) { return 'black' });
+    this.gear6SVG = this.svgContainer.append("rect").attr("x", 50).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 20).style("fill", function(d) { return 'black' });
+    this.gear7SVG = this.svgContainer.append("rect").attr("x", 60).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 15).style("fill", function(d) { return 'black' });
+    this.gear8SVG = this.svgContainer.append("rect").attr("x", 70).attr("y", 0).attr("z", 10).attr("width", 10).attr("height", 5).style("fill", function(d) { return 'black' });
   }
 };
 </script>

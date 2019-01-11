@@ -93,7 +93,7 @@ export default {
         }
       });
 
-    }.bind(this), 100);
+    }.bind(this), 33);
   },
 };
 </script>
