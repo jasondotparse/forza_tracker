@@ -77,6 +77,8 @@ server.on('message', (message, remote) => {
     analyticsObj = updateAnalyticsObj(dashboardData, analyticsObj);
     // update the data object.
     data = { ...dashboardData, analytics: analyticsObj };
+  } else {
+    console.log('start a race to view forza tracker');
   }
 });
 

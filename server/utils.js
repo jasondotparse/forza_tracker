@@ -1,5 +1,17 @@
 const _ = require('lodash');
 
+const getGearTime = (gear, dashboardData, analyticsObj) => {
+  if (isNaN(analyticsObj.currentLapData[`gear${gear}Time`])) {
+    return 0;
+  } else {
+    if (dashboardData.gear === gear) {
+      return analyticsObj.currentLapData[`gear${gear}Time`] + 1;
+    } else {
+      return analyticsObj.currentLapData[`gear${gear}Time`];
+    }
+  }
+}
+
 // updates all properties of the passed in analytics object.
 const updateAnalyticsObj = (dashboardData, analyticsObj) => {
 
@@ -29,14 +41,14 @@ const updateAnalyticsObj = (dashboardData, analyticsObj) => {
     averageFrictionBL: analyticsObj.currentLapData.totalFrictionBL / analyticsObj.currentLapData.dataPointsCount,
     totalFrictionBR: analyticsObj.currentLapData.totalFrictionBR + dashboardData.tireFrictionBR,
     averageFrictionBR: analyticsObj.currentLapData.totalFrictionBR / analyticsObj.currentLapData.dataPointsCount,
-    gear1Time: dashboardData.gear === 1 ? analyticsObj.currentLapData.gear1Time + 1 : analyticsObj.currentLapData.gear1Time,
-    gear2Time: dashboardData.gear === 2 ? analyticsObj.currentLapData.gear2Time + 1 : analyticsObj.currentLapData.gear2Time,
-    gear3Time: dashboardData.gear === 3 ? analyticsObj.currentLapData.gear3Time + 1 : analyticsObj.currentLapData.gear3Time,
-    gear4Time: dashboardData.gear === 4 ? analyticsObj.currentLapData.gear4Time + 1 : analyticsObj.currentLapData.gear4Time,
-    gear5Time: dashboardData.gear === 5 ? analyticsObj.currentLapData.gear5Time + 1 : analyticsObj.currentLapData.gear5Time,
-    gear6Time: dashboardData.gear === 6 ? analyticsObj.currentLapData.gear6Time + 1 : analyticsObj.currentLapData.gear6Time,
-    gear7Time: dashboardData.gear === 7 ? analyticsObj.currentLapData.gear7Time + 1 : analyticsObj.currentLapData.gear7Time,
-    gear8Time: dashboardData.gear === 8 ? analyticsObj.currentLapData.gear8Time + 1 : analyticsObj.currentLapData.gear8Time,
+    gear1Time: getGearTime(1, dashboardData, analyticsObj),
+    gear2Time: getGearTime(2, dashboardData, analyticsObj),
+    gear3Time: getGearTime(3, dashboardData, analyticsObj),
+    gear4Time: getGearTime(4, dashboardData, analyticsObj),
+    gear5Time: getGearTime(5, dashboardData, analyticsObj),
+    gear6Time: getGearTime(6, dashboardData, analyticsObj),
+    gear7Time: getGearTime(7, dashboardData, analyticsObj),
+    gear8Time: getGearTime(8, dashboardData, analyticsObj),
     lapTime: dashboardData.raceCurrentLap
   }
 
