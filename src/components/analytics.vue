@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="TelemetryView">
     <h1>race analytics</h1>
     <div>Click a lap number to see analytics gathered and tuning suggestions.</div>
 
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr v-for="(value, key) in lapData" :key="value.id" v-on:click="rowClicked(key)">
-            <th scope="row">{{key}}</th>
+            <th scope="row">{{value.currentLapName}}</th>
             <td>{{ value.lapTime.toFixed(3) }}</td>
             <td>{{ value.dataPointsCount }}</td>
             <td>{{ value.averageRPMs.toFixed(0) }}</td>
@@ -47,18 +47,18 @@
 
 <style>
 
-.table {
+table {
   font-size: 12px;
   padding: 10px;
-  width: 600px;
-}
-
-.row {
-  margin-left: 10px;
+  table-layout: fixed;
 }
 
 #gear1Time {
   height: 600px;
+}
+
+#TelemetryView {
+  margin: 25px;
 }
 
 </style>
@@ -94,6 +94,13 @@ export default {
 
       for (const key in this.allAnalyticsData) {
         if (key.includes('lap') || key === 'currentLapData') {
+
+          if (key === 'currentLapData') {
+            this.allAnalyticsData[key].currentLapName = 'current';
+          } else {
+            this.allAnalyticsData[key].currentLapName = key[key.length - 1];
+          }
+
           Vue.set(this.lapData, key, this.allAnalyticsData[key])
         }
       }
