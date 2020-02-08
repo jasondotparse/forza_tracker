@@ -126,15 +126,15 @@ export default {
     }
   },
   mounted: function() {
-    this.svgContainer = d3.select("#histogramSVG").append("svg").attr("width", 160).attr("height", 200);
-    this.gear1SVG = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear2SVG = this.svgContainer.append("rect").attr("x", 20).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear3SVG = this.svgContainer.append("rect").attr("x", 40).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear4SVG = this.svgContainer.append("rect").attr("x", 60).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear5SVG = this.svgContainer.append("rect").attr("x", 80).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear6SVG = this.svgContainer.append("rect").attr("x", 100).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear7SVG = this.svgContainer.append("rect").attr("x", 120).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
-    this.gear8SVG = this.svgContainer.append("rect").attr("x", 140).attr("y", 0).attr("z", 10).attr("width", 20).style("fill", function(d) { return 'black' });
+    this.svgContainer = d3.select("#histogramSVG").append("svg").attr("width", 200).attr("height", 200);
+    this.gear1SVG = this.svgContainer.append("rect").attr("x", 0).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear2SVG = this.svgContainer.append("rect").attr("x", 25).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear3SVG = this.svgContainer.append("rect").attr("x", 50).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear4SVG = this.svgContainer.append("rect").attr("x", 75).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear5SVG = this.svgContainer.append("rect").attr("x", 100).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear6SVG = this.svgContainer.append("rect").attr("x", 125).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear7SVG = this.svgContainer.append("rect").attr("x", 150).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
+    this.gear8SVG = this.svgContainer.append("rect").attr("x", 175).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return 'black' });
   }
 };
 </script>
