@@ -111,37 +111,19 @@ export default {
   },
   watch: {
     allAnalyticsData: function(newVal, oldVal) {
-      // this.gear1SVG.attr("height", (newVal[this.histogramLap].gear1Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear2SVG.attr("height", (newVal[this.histogramLap].gear2Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear3SVG.attr("height", (newVal[this.histogramLap].gear3Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear4SVG.attr("height", (newVal[this.histogramLap].gear4Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear5SVG.attr("height", (newVal[this.histogramLap].gear5Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear6SVG.attr("height", (newVal[this.histogramLap].gear6Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear7SVG.attr("height", (newVal[this.histogramLap].gear7Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
-      // this.gear8SVG.attr("height", (newVal[this.histogramLap].gear8Time / (newVal[this.histogramLap].dataPointsCount)) * 200);
+      // update histogram 
+      for (let i = 1; i < 8; i++) {
+        const barHeight = (newVal[this.histogramLap][`gear${i}Time`] / (newVal[this.histogramLap].dataPointsCount)) * 200;
+        this[`gear${i}SVG`].attr("height", barHeight);
+        this[`gear${i}SVG`].attr("y", 200 - barHeight + 10);
+      }
     }
   },
   mounted: function() {
-    this.svgContainer = d3.select("#histogramSVG"); // .append("svg")// .attr("width", 200).attr("height", 200);
-
-    // var scale = d3.scaleLinear()
-    //   .domain([d3.min(0), d3.max(200)])
-    //   .range([0, 200]);
-
-    // var x_axis = d3.axisBottom().scale(scale);
-
-    // var y_axis = d3.axisLeft().scale(scale);
-
-    // this.svgContainer.append("g")
-    //    .call(x_axis)
-
-    // this.svgContainer.append("g")
-    //   .attr("transform", "translate(0, 0)")
-    //   .call(y_axis);
+    // build histogram
+    this.svgContainer = d3.select("#histogramSVG");
 
     var width = 400, height = 400;
-
-    var data = [10, 15, 20, 25, 30];
 
     var svg = d3.select("#histogramSVG")
         .append("svg")
@@ -150,7 +132,7 @@ export default {
 
     var xscale = d3.scaleLinear()
         .domain([0, 8])
-        .range([0, width - 100]);
+        .range([0, width - 50]);
 
     var yscale = d3.scaleLinear()
             .domain([0, 100])
@@ -172,14 +154,18 @@ export default {
       .attr("transform", "translate(25, " + xAxisTranslate  +")")
       .call(x_axis)
 
-    this.gear1SVG = svg.append("rect").attr("x", 50).attr("y", 175).attr("z", 10).attr("height", 100).attr("width", 25).style("fill", function(d) { return 'steelblue' });
-    // this.gear2SVG = this.svgContainer.append("rect").attr("x", 25).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear3SVG = this.svgContainer.append("rect").attr("x", 50).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear4SVG = this.svgContainer.append("rect").attr("x", 75).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear5SVG = this.svgContainer.append("rect").attr("x", 100).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear6SVG = this.svgContainer.append("rect").attr("x", 125).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear7SVG = this.svgContainer.append("rect").attr("x", 150).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
-    // this.gear8SVG = this.svgContainer.append("rect").attr("x", 175).attr("y", 0).attr("z", 10).attr("width", 25).style("fill", function(d) { return '#808080' });
+    for (let i = 1; i < 9; i++) {
+      const x = 15 + i * 43
+
+      this[`gear${i}SVG`] = svg
+        .append("rect")
+        .attr("x", x)
+        .attr("y", 210)
+        .attr("z", 10)
+        .attr("height", 0)
+        .attr("width", 25)
+        .style("fill", function(d) { return 'steelblue' });
+    }
   }
 };
 </script>
