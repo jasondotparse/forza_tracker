@@ -1,14 +1,17 @@
 <template>
   <div>
-    <div>speed: {{ displayedSpeed }}mph</div>
-    <div>power: {{ displayedPower }}</div>
-    <div>torque: {{ displayedTorque }}</div>
+    <div>speed: {{ displayedSpeed }} mph</div>
+    <div>power: {{ displayedPower }} HP</div>
+    <div>torque: {{ displayedTorque }} Nm</div>
     <div>fuel: {{displayedFuel}}%</div>
     <a href='/#/analytics'>View race analytics</a>
   </div>
 </template>
 
 <script>
+
+const formatDisplayNum = str => Math.round(Math.max(Number(str), 0));
+
 export default {
   props: ['speedMPH', 'power', 'torque', 'fuel'],
   data() {
@@ -18,16 +21,19 @@ export default {
   },
   computed: {
     displayedSpeed: function () {
-      return Math.round(Number(this.speedMPH));
+      return formatDisplayNum(this.speedMPH);
     },
     displayedPower: function () {
-      return Math.round(Number(this.power));
+      const powerInWatts = this.power;
+      const powerInHP = this.power / 745.699872;
+
+      return formatDisplayNum(powerInHP);
     },
     displayedTorque: function () {
-      return Math.round(Number(this.torque));
+      return formatDisplayNum(this.torque);
     },
     displayedFuel: function () {
-      return Number(this.fuel);
+      return Number(this.fuel).toPrecision(2);
     }
   }
 };

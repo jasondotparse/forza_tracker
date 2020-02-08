@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div>{{carName}} {{displayedCarClass}}/{{carPerformanceIndex}}</div>
+    <div>PI: {{carName}} {{displayedCarClass}}/{{carPerformanceIndex}}</div>
     <div>{{numCylinders}} cylinder {{displayedDrivetrain}}</div>
-    <div>lap number: {{displayedLap}}</div>
-    <div>lap: {{ currentLap }}</div>
-    <div>best lap: {{ bestLap }}</div>
-    <div>last lap: {{lastLap}}</div>
+    <div>lap {{displayedLapNum}}</div>
+    <div>current lap: {{ displayedCurrentLapTime }}</div>
+    <div>best lap: {{ displayedBestLapTime }}</div>
+    <div>last lap: {{ displayedLastLapTime }}</div>
   </div>
 </template>
 
@@ -26,7 +26,16 @@ export default {
     return { }
   },
   computed: {
-    displayedLap: function() {
+    displayedCurrentLapTime: function() {
+      return Number(this.currentLap).toPrecision(6);
+    },
+    displayedBestLapTime: function() {
+      return Number(this.bestLap).toPrecision(6);
+    },
+    displayedLastLapTime: function() {
+      return Number(this.lastLap).toPrecision(6);
+    },
+    displayedLapNum: function() {
       return this.lapNumber + 1;
     }, 
     carName: function() {
